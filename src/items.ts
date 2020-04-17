@@ -1,25 +1,4 @@
-type ItemKey = 
-    'LION_CREST'
-    | 'WINE_BOTTLE'
-    | 'UTILITY_KEY'
-    | 'SHEET_MUSIC'
-    | 'MOOSE_HEAD'
-    | 'KEY_CODE'
-    | 'EAGLE_CREST'
-    | 'CROWBAR'
-    | 'STATUE_HEAD'
-    | 'HANDLE'
-    | 'SMALL_KEY'
-    | 'WOLF_CREST'
-
-
-type Item = {
-    name : string,
-    description: string,
-    messageWhenUsed : string,
-    messageWhenNotUsed : string,
-    soundWhenUsed: string,
-}
+import { ItemKey, Item } from './shared_interfaces'
 
 
 export

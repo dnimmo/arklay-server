@@ -7,7 +7,9 @@
       "removeComments": true,
       "preserveConstEnums": true,
       "outFile": "./build/handler.js",
-      "sourceMap": true
+      "sourceMap": true,
+      "moduleResolution": "node",
+      "allowJs": true
   },
   "include": [
       "src/**/*"
