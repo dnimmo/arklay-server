@@ -1,0 +1,23 @@
+{
+  "name": "arklay-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github-personal:dnimmo/arklay-server"
+  },
+  "author": "David Nimmo <dnimmo@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^25.3.0",
+    "ts-jest": "^25.4.0",
+    "typescript": "^3.8.3"
+  }
+}
