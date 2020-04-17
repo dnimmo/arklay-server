@@ -2,11 +2,12 @@
   "name": "arklay-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.ts",
   "directories": {
     "test": "test"
   },
   "scripts": {
+    "build": "tsc",
     "test": "jest test"
   },
   "repository": {
@@ -17,7 +18,11 @@
   "license": "ISC",
   "devDependencies": {
     "jest": "^25.3.0",
+    "nodemon": "^2.0.3",
     "ts-jest": "^25.4.0",
     "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
