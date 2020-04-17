@@ -1,60 +1,60 @@
 const { 
-  itemCanBeUsed
-  , itemHasBeenPickedUp
-  , itemHasBeenUsed 
+    itemCanBeUsed
+    , itemHasBeenPickedUp
+    , itemHasBeenUsed 
 } = require('../src/items.ts');
 
 
 describe('Game/items', () => {
-  describe('check to see if item has been used', () => {
-      const item = 'TEST_ITEM';
+    describe('check to see if item has been used', () => {
+        const item = 'TEST_ITEM';
 
       
-      test('reports that item has been used if it appears in itemsUsed', () => {
-          const inventory = { itemsUsed: [item] };
+        test('reports that item has been used if it appears in itemsUsed', () => {
+            const inventory = { itemsUsed: [item] };
           
           
-          const expected = 
+            const expected = 
             true;
 
 
-          const actual =
+            const actual =
             itemHasBeenUsed({ item, inventory });
 
 
-          expect(actual)
-              .toBe(expected);
-      });
+            expect(actual)
+                .toBe(expected);
+        });
 
 
-      test('reports that item has not been used if it does not appear in itemsUsed', () => {
-          const inventory = { itemsUsed: [] };
+        test('reports that item has not been used if it does not appear in itemsUsed', () => {
+            const inventory = { itemsUsed: [] };
         
         
-          const expected = 
+            const expected = 
             false;
 
 
-          const actual =
+            const actual =
             itemHasBeenUsed({ item, inventory });
 
 
-          expect(actual)
-              .toBe(expected);
-      });
-  });
+            expect(actual)
+                .toBe(expected);
+        });
+    });
 
 
-  describe('check to see if item has been picked up', () => {
-      const item = 'TEST_ITEM';
+    describe('check to see if item has been picked up', () => {
+        const item = 'TEST_ITEM';
 
 
-      test('reports that item has not been picked up if it does not appear in inventory at all', () => {
-          const expected = 
+        test('reports that item has not been picked up if it does not appear in inventory at all', () => {
+            const expected = 
             false;
 
 
-          const actual = 
+            const actual = 
             itemHasBeenPickedUp({
                 item,
                 inventory: { 
@@ -64,16 +64,16 @@ describe('Game/items', () => {
             });
 
 
-          expect(actual).toBe(expected);
-      });
+            expect(actual).toBe(expected);
+        });
 
 
-      test('reports that item has been picked up if it appears in held items', () => {
-          const expected = 
+        test('reports that item has been picked up if it appears in held items', () => {
+            const expected = 
             true;
 
 
-          const actual = 
+            const actual = 
             itemHasBeenPickedUp({
                 item,
                 inventory: { 
@@ -83,16 +83,16 @@ describe('Game/items', () => {
             });
 
 
-          expect(actual).toBe(expected);
-      });
+            expect(actual).toBe(expected);
+        });
 
 
-      test('reports that item has been picked up if it appears in used items', () => {
-          const expected = 
+        test('reports that item has been picked up if it appears in used items', () => {
+            const expected = 
             true;
 
 
-          const actual = 
+            const actual = 
             itemHasBeenPickedUp({
                 item,
                 inventory: { 
@@ -102,47 +102,47 @@ describe('Game/items', () => {
             });
 
 
-          expect(actual).toBe(expected);
-      });
-  });
+            expect(actual).toBe(expected);
+        });
+    });
 
 
-  describe('check to see if item can be used in current room', () => {
-      const availableDirections = 
+    describe('check to see if item can be used in current room', () => {
+        const availableDirections = 
         [ { itemsThatCanBeUsed: ['TEST_ITEM'] } ];
 
 
-      test('reports that item can be used in current room', () => {
-          const expected = 
+        test('reports that item can be used in current room', () => {
+            const expected = 
             true;
 
 
-          const actual =
+            const actual =
             itemCanBeUsed({ 
                 availableDirections
                 , item: 'TEST_ITEM'
             });
 
 
-          expect(actual)
-              .toBe(expected);
-      });
+            expect(actual)
+                .toBe(expected);
+        });
 
 
-      test('reports that item can not be used in current room', () => {
-          const expected = 
+        test('reports that item can not be used in current room', () => {
+            const expected = 
             false;
 
 
-          const actual =
+            const actual =
             itemCanBeUsed({ 
                 availableDirections
                 , item: 'TEST_ITEM_TWO'
             });
 
 
-          expect(actual)
-              .toBe(expected);
-      });
-  });
+            expect(actual)
+                .toBe(expected);
+        });
+    });
 });

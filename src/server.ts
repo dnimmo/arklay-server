@@ -1,8 +1,8 @@
-import express from 'express'
+import express from 'express';
 
 
 const app = 
-  express()
+  express();
 
 
-app.listen(3080)
+app.listen(3080);

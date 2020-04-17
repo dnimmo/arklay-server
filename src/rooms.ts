@@ -34,8 +34,8 @@ const anItemCanBeUsed =
       : { availableDirections : Array<Direction> 
       }) 
       : boolean => 
-          availableDirections
-              .some(({itemsThatCanBeUsed}) => itemsThatCanBeUsed.length > 0);
+      availableDirections
+          .some(({itemsThatCanBeUsed}) => itemsThatCanBeUsed.length > 0);
 
 
 const rooms = {

@@ -1,4 +1,4 @@
-import { ItemKey, Item } from './shared_interfaces'
+import { ItemKey, Item } from './shared_interfaces';
 
 
 export
@@ -9,13 +9,13 @@ const itemCanBeUsed =
     }
   ) : boolean => 
       params
-        .availableDirections
-        .some(
-          ({ itemsThatCanBeUsed }) => 
-              itemsThatCanBeUsed 
-                  ? itemsThatCanBeUsed.includes(params.item)
-                  : false
-      );
+          .availableDirections
+          .some(
+              ({ itemsThatCanBeUsed }) => 
+                  itemsThatCanBeUsed 
+                      ? itemsThatCanBeUsed.includes(params.item)
+                      : false
+          );
 
 
 export
@@ -40,7 +40,7 @@ const itemHasBeenUsed =
         , itemsUsed : Array<ItemKey> 
       }
   }) : boolean => 
-  params.inventory
+      params.inventory
           .itemsUsed
           .includes(params.item);
 
@@ -135,7 +135,7 @@ const items =
 
 const getItem = 
   (itemKey : ItemKey) : Item => 
-    items[itemKey]
+      items[itemKey];
 
 
 export default getItem; 
