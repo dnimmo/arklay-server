@@ -1,3 +1,6 @@
+import { Direction, DirectionDisplayText } from './shared_interfaces';
+
+
 export
 const defaultUnsuccessfulEntryAttemptMessage =
   'Hm, it seems you can\'t go that way.';
@@ -5,7 +8,12 @@ const defaultUnsuccessfulEntryAttemptMessage =
 
 export 
 const isUnlocked =
-  ({ room, itemsUsed } : { room : Room, itemsUsed : string[] }) : boolean => {
+  ({ room, itemsUsed } 
+      : { 
+        room : Room, 
+        itemsUsed : Array<string> 
+      }) 
+      : boolean => {
       const { unlockRequirements } = room;
 
       const unlockRequirementsMet =
@@ -22,9 +30,12 @@ const isUnlocked =
   
 export
 const anItemCanBeUsed = 
-  ({ availableDirections } : { availableDirections : Direction[] }) : boolean => 
-      availableDirections
-          .some(({itemsThatCanBeUsed}) => itemsThatCanBeUsed.length > 0);
+  ({ availableDirections } 
+      : { availableDirections : Array<Direction> 
+      }) 
+      : boolean => 
+          availableDirections
+              .some(({itemsThatCanBeUsed}) => itemsThatCanBeUsed.length > 0);
 
           
 type RoomKey = 
@@ -80,24 +91,6 @@ type RoomKey =
   | 'END'
 
 
-type DirectionDisplayText = 
-  'Enter' 
-  | 'North' 
-  | 'East' 
-  | 'West' 
-  | 'South' 
-  | 'Upstairs' 
-  | 'Downstairs' 
-  | 'End'
-
-
-type Direction = 
-  { text: string, 
-    room: string, 
-    itemsThatCanBeUsed: string[] | never[]
-  }
-
-
 type Room = 
   { name: string,
     intro: string,
@@ -122,7 +115,7 @@ const rooms = {
         , item: null
         , availableDirections: 
           [ { 
-              text: 'Enter'
+              text: DirectionDisplayText.Enter
               , room: 'ENTRANCE'
               , itemsThatCanBeUsed: []
           } 
@@ -132,7 +125,7 @@ const rooms = {
         , messageOnUnsuccessfulEntryAttempt: null
     }
     , ENTRANCE: { 
-        name: 'Entrance'
+        name: DirectionDisplayText.Enter
         , intro: 'You are in the dim foyer of what appears to be a mansion.'
         , surroundings: 'There is a grand staircase here, as well as a couple of doors.'
         , surroundingsWhenItemPickedUp: null
@@ -141,15 +134,15 @@ const rooms = {
         , availableDirections: 
             [ 
                 { 
-                    text: 'Upstairs'
+                    text: DirectionDisplayText.Upstairs
                     , room: 'UPSTAIRS_FOYER'
                     , itemsThatCanBeUsed: []
                 } 
-                , { text: 'West'
+                , { text: DirectionDisplayText.West
                     , room: 'DINING_HALL'
                     , itemsThatCanBeUsed: []
                 }
-                , { text: 'East'
+                , { text: DirectionDisplayText.East
                     , room: 'HALLWAY_ONE'
                     , itemsThatCanBeUsed: []
                 }
@@ -167,11 +160,11 @@ const rooms = {
         , item: null
         , availableDirections: 
             [ { 
-                text: 'Downstairs'
+                text: DirectionDisplayText.Downstairs
                 , room: 'ENTRANCE'
                 , itemsThatCanBeUsed: []
             } 
-            , { text: 'North'
+            , { text: DirectionDisplayText.North
                 , room: 'UPSTAIRS_HALLWAY_ONE'
                 , itemsThatCanBeUsed: []
             }
@@ -189,15 +182,15 @@ const rooms = {
         , item: null
         , availableDirections: 
             [ { 
-                text: 'West'
+                text: DirectionDisplayText.West
                 , room: 'UPSTAIRS_STUDY'
                 , itemsThatCanBeUsed: []
             } 
-            , { text: 'East'
+            , { text: DirectionDisplayText.East
                 , room: 'UPSTAIRS_THIRD_BEDROOM'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'South'
+            , { text: DirectionDisplayText.South
                 , room: 'UPSTAIRS_FOYER'
                 , itemsThatCanBeUsed: []
             }
@@ -215,15 +208,15 @@ const rooms = {
         , item: null
         , availableDirections: 
             [ { 
-                text: 'West'
+                text: DirectionDisplayText.West
                 , room: 'UPSTAIRS_SECRET_ROOM_THREE'
                 , itemsThatCanBeUsed: ['KEY_CODE']
             } 
-            , { text: 'East'
+            , { text: DirectionDisplayText.East
                 , room: 'UPSTAIRS_HALLWAY_ONE'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'North'
+            , { text: DirectionDisplayText.North
                 , room: 'UPSTAIRS_HALLWAY_TWO'
                 , itemsThatCanBeUsed: []
             }
@@ -240,7 +233,7 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: 'LION_CREST'
         , availableDirections: 
-            [ { text: 'East'
+            [ { text: DirectionDisplayText.East
                 , room: 'UPSTAIRS_STUDY'
                 , itemsThatCanBeUsed: []
             }
@@ -257,15 +250,15 @@ const rooms = {
         , surroundingsWhenItemUsed: 'Looks like it needs three crests to open.'
         , item: null
         , availableDirections: 
-            [ { text: 'North'
+            [ { text: DirectionDisplayText.North
                 , room: 'UPSTAIRS_MASTER_BEDROOM'
                 , itemsThatCanBeUsed: ['LION_CREST', 'WOLF_CREST', 'EAGLE_CREST']
             }
-            , { text: 'East'
+            , { text: DirectionDisplayText.East
                 , room: 'UPSTAIRS_HALLWAY_TWO'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'Downstairs'
+            , { text: DirectionDisplayText.Downstairs
                 , room: 'STAIRWAY_THREE'
                 , itemsThatCanBeUsed: []
             }
@@ -282,11 +275,11 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'West'
+            [ { text: DirectionDisplayText.West
                 , room: 'UPSTAIRS_MASTER_EN_SUITE'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'South'
+            , { text: DirectionDisplayText.South
                 , room: 'UPSTAIRS_STAIRWAY_THREE'
                 , itemsThatCanBeUsed: []
             }
@@ -303,7 +296,7 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: 'WINE_BOTTLE'
         , availableDirections: 
-            [ { text: 'East'
+            [ { text: DirectionDisplayText.East
                 , room: 'UPSTAIRS_MASTER_BEDROOM'
                 , itemsThatCanBeUsed: []
             }
@@ -320,11 +313,11 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'West'
+            [ { text: DirectionDisplayText.West
                 , room: 'UPSTAIRS_HALLWAY_FOUR'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'Downstairs'
+            , { text: DirectionDisplayText.Downstairs
                 , room: 'STAIRWAY_TWO'
                 , itemsThatCanBeUsed: []
             }
@@ -342,19 +335,19 @@ const rooms = {
         , item: null
         , availableDirections: 
             [ 
-                { text: 'West'
+                { text: DirectionDisplayText.West
                     , room: 'UPSTAIRS_STAIRWAY_THREE'
                     , itemsThatCanBeUsed: []
                 }
-                , { text: 'North'
+                , { text: DirectionDisplayText.North
                     , room: 'UPSTAIRS_TROPHY_ROOM'
                     , itemsThatCanBeUsed: []
                 }
-                , { text: 'East'
+                , { text: DirectionDisplayText.East
                     , room: 'UPSTAIRS_ART_GALLERY'
                     , itemsThatCanBeUsed: []
                 }
-                , { text: 'South'
+                , { text: DirectionDisplayText.South
                     , room: 'UPSTAIRS_STUDY'
                     ,  itemsThatCanBeUsed: []
                 }
@@ -371,11 +364,11 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'West'
+            [ { text: DirectionDisplayText.West
                 , room: 'UPSTAIRS_HALLWAY_TWO'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'East'
+            , { text: DirectionDisplayText.East
                 , room: 'UPSTAIRS_HALLWAY_THREE'
                 , itemsThatCanBeUsed: []
             }
@@ -392,19 +385,19 @@ const rooms = {
         , surroundingsWhenItemUsed: 'There are doors in every direction.'
         , item: null
         , availableDirections: 
-            [ { text: 'West'
+            [ { text: DirectionDisplayText.West
                 , room: 'UPSTAIRS_ART_GALLERY'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'North'
+            , { text: DirectionDisplayText.North
                 , room: 'UPSTAIRS_AQUARIUM'
                 , itemsThatCanBeUsed: ['CROWBAR']
             }
-            , { text: 'East'
+            , { text: DirectionDisplayText.East
                 , room: 'UPSTAIRS_HALLWAY_FOUR'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'South'
+            , { text: DirectionDisplayText.South
                 , room: 'UPSTAIRS_LIBRARY'
                 ,  itemsThatCanBeUsed: []
             }
@@ -421,7 +414,7 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: 'UTILITY_KEY'
         , availableDirections: 
-            [ { text: 'South'
+            [ { text: DirectionDisplayText.South
                 , room: 'UPSTAIRS_HALLWAY_THREE'
                 , itemsThatCanBeUsed: []
             }
@@ -438,7 +431,7 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: 'SHEET_MUSIC'
         , availableDirections: 
-            [ { text: 'North'
+            [ { text: DirectionDisplayText.North
                 , room: 'UPSTAIRS_HALLWAY_THREE'
                 , itemsThatCanBeUsed: []
             }
@@ -455,15 +448,15 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'West'
+            [ { text: DirectionDisplayText.West
                 , room: 'UPSTAIRS_HALLWAY_THREE'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'East'
+            , { text: DirectionDisplayText.East
                 , room: 'UPSTAIRS_STAIRWAY_TWO'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'South'
+            , { text: DirectionDisplayText.South
                 , room: 'UPSTAIRS_SECOND_BEDROOM'
                 , itemsThatCanBeUsed: []
             }
@@ -480,11 +473,11 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'North'
+            [ { text: DirectionDisplayText.North
                 , room: 'UPSTAIRS_HALLWAY_FOUR'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'South'
+            , { text: DirectionDisplayText.South
                 , room: 'UPSTAIRS_SECOND_BATHROOM'
                 , itemsThatCanBeUsed: []
             }
@@ -501,11 +494,11 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'North'
+            [ { text: DirectionDisplayText.North
                 , room: 'UPSTAIRS_SECOND_BEDROOM'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'West'
+            , { text: DirectionDisplayText.West
                 , room: 'UPSTAIRS_THIRD_BEDROOM'
                 , itemsThatCanBeUsed: []
             }
@@ -522,11 +515,11 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'West'
+            [ { text: DirectionDisplayText.West
                 , room: 'UPSTAIRS_HALLWAY_ONE'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'East'
+            , { text: DirectionDisplayText.East
                 , room: 'UPSTAIRS_SECOND_BATHROOM'
                 , itemsThatCanBeUsed: []
             }
@@ -543,7 +536,7 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'South'
+            [ { text: DirectionDisplayText.South
                 , room: 'UPSTAIRS_HALLWAY_TWO'
                 , itemsThatCanBeUsed: []
             }
@@ -560,11 +553,11 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'North'
+            [ { text: DirectionDisplayText.North
                 , room: 'HALLWAY_TWO'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'East'
+            , { text: DirectionDisplayText.East
                 , room: 'ENTRANCE'
                 , itemsThatCanBeUsed: []
             }
@@ -581,11 +574,11 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'North'
+            [ { text: DirectionDisplayText.North
                 , room: 'STATUE_ROOM'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'West'
+            , { text: DirectionDisplayText.West
                 , room: 'ENTRANCE'
                 , itemsThatCanBeUsed: []
             }
@@ -602,19 +595,19 @@ const rooms = {
         , surroundingsWhenItemUsed: 'The stench in here is almost overwhelming now.'
         , item: null
         , availableDirections: 
-            [ { text: 'North'
+            [ { text: DirectionDisplayText.North
                 , room: 'KITCHEN'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'West'
+            , { text: DirectionDisplayText.West
                 , room: 'HALLWAY_FOUR'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'East'
+            , { text: DirectionDisplayText.East
                 , room: 'UTILITY_ROOM'
                 , itemsThatCanBeUsed: ['UTILITY_KEY']
             }
-            , { text: 'South'
+            , { text: DirectionDisplayText.South
                 , room: 'DINING_HALL'
                 , itemsThatCanBeUsed: []
             }
@@ -631,11 +624,11 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'West'
+            [ { text: DirectionDisplayText.West
                 , room: 'HALLWAY_TWO'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'Downstairs'
+            , { text: DirectionDisplayText.Downstairs
                 , room: 'BASEMENT_STAIRWAY'
                 , itemsThatCanBeUsed: []
             }
@@ -652,15 +645,15 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'North'
+            [ { text: DirectionDisplayText.North
                 , room: 'WASTE_DISPOSAL'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'East'
+            , { text: DirectionDisplayText.East
                 , room: 'FREEZER'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'South'
+            , { text: DirectionDisplayText.South
                 , room: 'HALLWAY_TWO'
                 , itemsThatCanBeUsed: []
             }
@@ -677,7 +670,7 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: 'MOOSE_HEAD'
         , availableDirections: 
-            [ { text: 'West'
+            [ { text: DirectionDisplayText.West
                 , room: 'KITCHEN'
                 , itemsThatCanBeUsed: []
             }
@@ -694,11 +687,11 @@ const rooms = {
         , surroundingsWhenItemUsed: 'What could be at the bottom?'
         , item: null
         , availableDirections: 
-            [ { text: 'Enter'
+            [ { text: DirectionDisplayText.Enter
                 , room: 'BASEMENT_WASTE_DISPOSAL'
                 , itemsThatCanBeUsed: ['HANDLE']
             }
-            , { text: 'South'
+            , { text: DirectionDisplayText.South
                 , room: 'KITCHEN'
                 , itemsThatCanBeUsed: []
             }
@@ -715,15 +708,15 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'North'
+            [ { text: DirectionDisplayText.North
                 , room: 'STAIRWAY_THREE'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'East'
+            , { text: DirectionDisplayText.East
                 , room: 'HALLWAY_TWO'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'West'
+            , { text: DirectionDisplayText.West
                 , room: 'MUSIC_ROOM'
                 , itemsThatCanBeUsed: []
             }
@@ -740,11 +733,11 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'Upstairs'
+            [ { text: DirectionDisplayText.Upstairs
                 , room: 'UPSTAIRS_STAIRWAY_THREE'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'South'
+            , { text: DirectionDisplayText.South
                 , room: 'HALLWAY_FOUR'
                 , itemsThatCanBeUsed: []
             }
@@ -761,15 +754,15 @@ const rooms = {
         , surroundingsWhenItemUsed: 'A wall has moved, revealing a hidden room behind it.'
         , item: null
         , availableDirections: 
-            [ { text: 'North'
+            [ { text: DirectionDisplayText.North
                 , room: 'HALLWAY_FIVE'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'East'
+            , { text: DirectionDisplayText.East
                 , room: 'HALLWAY_FOUR'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'South'
+            , { text: DirectionDisplayText.South
                 , room: 'SECRET_ROOM_ONE'
                 , itemsThatCanBeUsed: ['SHEET_MUSIC']
             }
@@ -786,11 +779,11 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'North'
+            [ { text: DirectionDisplayText.North
                 , room: 'GYM'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'South'
+            , { text: DirectionDisplayText.South
                 , room: 'MUSIC_ROOM'
                 , itemsThatCanBeUsed: []
             }
@@ -807,11 +800,11 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: 'KEY_CODE'
         , availableDirections: 
-            [ { text: 'East'
+            [ { text: DirectionDisplayText.East
                 , room: 'SWIMMING_POOL'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'South'
+            , { text: DirectionDisplayText.South
                 , room: 'HALLWAY_FIVE'
                 , itemsThatCanBeUsed: []
             }
@@ -828,11 +821,11 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'West'
+            [ { text: DirectionDisplayText.West
                 , room: 'GYM'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'East'
+            , { text: DirectionDisplayText.East
                 , room: 'SHOWERS'
                 , itemsThatCanBeUsed: []
             }
@@ -849,7 +842,7 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'West'
+            [ { text: DirectionDisplayText.West
                 , room: 'SWIMMING_POOL'
                 , itemsThatCanBeUsed: []
             }
@@ -866,7 +859,7 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: 'EAGLE_CREST'
         , availableDirections: 
-            [ { text: 'North'
+            [ { text: DirectionDisplayText.North
                 , room: 'MUSIC_ROOM'
                 , itemsThatCanBeUsed: []
             }
@@ -883,15 +876,15 @@ const rooms = {
         , surroundingsWhenItemUsed: 'At least they aren\'t mannequins, but statues aren\'t much better. One of them has moved aside, revealing a hidden doorway.'
         , item: null
         , availableDirections: 
-            [ { text: 'North'
+            [ { text: DirectionDisplayText.North
                 , room: 'SECRET_ROOM_TWO'
                 , itemsThatCanBeUsed: ['STATUE_HEAD']
             }
-            , { text: 'East'
+            , { text: DirectionDisplayText.East
                 , room: 'HALLWAY_THREE'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'South'
+            , { text: DirectionDisplayText.South
                 , room: 'HALLWAY_ONE'
                 , itemsThatCanBeUsed: []
             }
@@ -908,7 +901,7 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: 'WOLF_CREST'
         , availableDirections: 
-            [ { text: 'South'
+            [ { text: DirectionDisplayText.South
                 , room: 'STATUE_ROOM'
                 , itemsThatCanBeUsed: []
             }
@@ -925,19 +918,19 @@ const rooms = {
         , surroundingsWhenItemUsed: 'This hallway is quite large. The door to the servants\' quarters is unlocked.'
         , item: null
         , availableDirections: 
-          [ { text: 'North'
+          [ { text: DirectionDisplayText.North
               , room: 'SERVANTS_QUARTERS'
               , itemsThatCanBeUsed: ['SMALL_KEY']
           }
-          , { text: 'West'
+          , { text: DirectionDisplayText.West
               , room: 'STATUE_ROOM'
               , itemsThatCanBeUsed: []
           }
-          , { text: 'East'
+          , { text: DirectionDisplayText.East
               , room: 'STAIRWAY_TWO'
               , itemsThatCanBeUsed: []
           }
-          , { text: 'South'
+          , { text: DirectionDisplayText.South
               , room: 'GARAGE'
               , itemsThatCanBeUsed: []
           }
@@ -954,7 +947,7 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: 'CROWBAR'
         , availableDirections: 
-            [ { text: 'North'
+            [ { text: DirectionDisplayText.North
                 , room: 'HALLWAY_THREE'
                 , itemsThatCanBeUsed: []
             }
@@ -971,11 +964,11 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: 'STATUE_HEAD'
         , availableDirections: 
-            [ { text: 'West'
+            [ { text: DirectionDisplayText.West
                 , room: 'SERVANTS_BATHROOM'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'South'
+            , { text: DirectionDisplayText.South
                 , room: 'HALLWAY_THREE'
                 , itemsThatCanBeUsed: []
             }
@@ -992,7 +985,7 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'East'
+            [ { text: DirectionDisplayText.East
                 , room: 'SERVANTS_QUARTERS'
                 , itemsThatCanBeUsed: []
             }
@@ -1009,11 +1002,11 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'Upstairs'
+            [ { text: DirectionDisplayText.Upstairs
                 , room: 'UPSTAIRS_STAIRWAY_TWO'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'West'
+            , { text: DirectionDisplayText.West
                 , room: 'HALLWAY_THREE'
                 , itemsThatCanBeUsed: []
             }
@@ -1030,19 +1023,19 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'Upstairs'
+            [ { text: DirectionDisplayText.Upstairs
                 , room: 'UTILITY_ROOM'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'West'
+            , { text: DirectionDisplayText.West
                 , room: 'BASEMENT_STORAGE'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'East'
+            , { text: DirectionDisplayText.East
                 , room: 'BASEMENT_STORAGE_TWO'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'South'
+            , { text: DirectionDisplayText.South
                 , room: 'BASEMENT_WINE_CELLAR'
                 , itemsThatCanBeUsed: []
             }
@@ -1060,7 +1053,7 @@ const rooms = {
         , item: null
         , availableDirections: 
             [  { 
-                text: 'East'
+                text: DirectionDisplayText.East
                 , room: 'BASEMENT_STAIRWAY'
                 , itemsThatCanBeUsed: []
             }
@@ -1078,7 +1071,7 @@ const rooms = {
         , item: 'HANDLE'
         , availableDirections: 
             [  { 
-                text: 'West'
+                text: DirectionDisplayText.West
                 , room: 'BASEMENT_STAIRWAY'
                 , itemsThatCanBeUsed: []
             }
@@ -1096,7 +1089,7 @@ const rooms = {
         , item: 'SMALL_KEY'
         , availableDirections: 
             [  { 
-                text: 'South'
+                text: DirectionDisplayText.South
                 , room: 'BASEMENT_STORAGE'
                 , itemsThatCanBeUsed: []
             }
@@ -1114,7 +1107,7 @@ const rooms = {
         , item: null
         , availableDirections: 
             [  { 
-                text: 'East'
+                text: DirectionDisplayText.East
                 , room: 'BASEMENT_ITEM_ROOM'
                 , itemsThatCanBeUsed: []
             }
@@ -1132,11 +1125,11 @@ const rooms = {
         , item: null
         , availableDirections: 
             [ { 
-                text: 'North'
+                text: DirectionDisplayText.North
                 , room: 'BASEMENT_STAIRWAY'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'West'
+            , { text: DirectionDisplayText.West
                 , room: 'BASEMENT_LAB_ENTRANCE'
                 , itemsThatCanBeUsed: ['WINE_BOTTLE']
             }
@@ -1154,7 +1147,7 @@ const rooms = {
         , item: null
         , availableDirections: 
             [ { 
-                text: 'End'
+                text: DirectionDisplayText.End
                 , room: 'END'
                 , itemsThatCanBeUsed: []
             }

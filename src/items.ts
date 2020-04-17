@@ -24,28 +24,46 @@ type Item = {
 
 export
 const itemCanBeUsed =
-  ({ item, availableDirections }) => 
-      availableDirections.some(
+  (params : {
+     item : ItemKey, 
+     availableDirections: Array<{ itemsThatCanBeUsed: Array<ItemKey> }> 
+    }
+  ) : boolean => 
+      params
+        .availableDirections
+        .some(
           ({ itemsThatCanBeUsed }) => 
               itemsThatCanBeUsed 
-                  ? itemsThatCanBeUsed.includes(item)
+                  ? itemsThatCanBeUsed.includes(params.item)
                   : false
       );
 
 
 export
 const itemHasBeenPickedUp =
-  ({ item, inventory }) => 
-      inventory.itemsHeld.includes(item)
-        || inventory.itemsUsed.includes(item);
+  (params : { 
+    item: ItemKey, 
+    inventory : 
+      { itemsHeld : Array<ItemKey>
+        , itemsUsed : Array<ItemKey> 
+      }
+  }) : boolean => 
+      params.inventory.itemsHeld.includes(params.item)
+        || params.inventory.itemsUsed.includes(params.item);
 
 
 export
 const itemHasBeenUsed =
-  ({ item, inventory }) => 
-      inventory
+  (params : { 
+    item: ItemKey, 
+    inventory : 
+      { itemsHeld : Array<ItemKey>
+        , itemsUsed : Array<ItemKey> 
+      }
+  }) : boolean => 
+  params.inventory
           .itemsUsed
-          .includes(item);
+          .includes(params.item);
 
 
 const items = 
