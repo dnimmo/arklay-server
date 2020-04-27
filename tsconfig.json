@@ -2,14 +2,16 @@
   "compilerOptions": {
       "lib": ["es2018"],
       "strict": true,
-      "module": "system",
+      "module": "CommonJS",
       "noImplicitAny": true,
       "removeComments": true,
       "preserveConstEnums": true,
-      "outFile": "./build/handler.js",
+      "outDir": "./build/",
       "sourceMap": true,
       "moduleResolution": "node",
-      "allowJs": true
+      "allowJs": true,
+      "target": "es2017",
+      "esModuleInterop": true
   },
   "include": [
       "src/**/*"
