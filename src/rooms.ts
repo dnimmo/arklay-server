@@ -1106,7 +1106,7 @@ const rooms = {
 
 const getRoom = 
     (roomKey: RoomKey) : Room => 
-        rooms[roomKey];
+        rooms[roomKey]; 
 
 
 export default getRoom;
