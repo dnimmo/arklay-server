@@ -9,7 +9,8 @@
   "scripts": {
     "build": "tsc",
     "test": "jest test",
-    "lint": "eslint src/*.ts"
+    "lint": "eslint src/*.ts",
+    "zip": "npm run build && zip -r arklay-api.zip ./build/"
   },
   "repository": {
     "type": "git",

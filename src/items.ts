@@ -45,6 +45,7 @@ const itemHasBeenUsed =
           .includes(params.item);
 
 
+export
 const items = 
   { LION_CREST: { 
       name: 'Lion Crest',

@@ -38,6 +38,7 @@ const anItemCanBeUsed =
           .some(({itemsThatCanBeUsed}) => itemsThatCanBeUsed.length > 0);
 
 
+export
 const rooms = {
     START: { 
         name: 'Start'
