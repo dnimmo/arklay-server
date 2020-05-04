@@ -21,6 +21,7 @@ type Item = {
   messageWhenUsed : string,
   messageWhenNotUsed : string,
   soundWhenUsed: string,
+  key: string,
 }
 
 

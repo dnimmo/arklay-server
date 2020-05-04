@@ -53,6 +53,7 @@ const items =
       messageWhenUsed: 'You place the crest into the door',
       messageWhenNotUsed: 'Cool lion, but what could this be for?',
       soundWhenUsed: 'insert_crest',
+      key: 'LION_CREST'
   },
   WINE_BOTTLE: {
       name : 'Wine Bottle',
@@ -60,6 +61,7 @@ const items =
       messageWhenUsed : 'You place the wine bottle back in the rack',
       messageWhenNotUsed : 'It\'s a shame this is empty. Some wine would be good right now.',
       soundWhenUsed: 'bottle_noise',
+      key: 'WINE_BOTTLE'
   },
   UTILITY_KEY: { 
       name : 'Utility Key',
@@ -67,6 +69,7 @@ const items =
       messageWhenUsed : 'You unlock the door to the utility room',
       messageWhenNotUsed : 'This key doesn\'t seem to fit any locks here.',
       soundWhenUsed: 'metal_on_metal',
+      key: 'UTILITY_KEY'
   },
   SHEET_MUSIC: {
       name : 'Sheet Music',
@@ -74,6 +77,7 @@ const items =
       messageWhenUsed : 'You play the piano',
       messageWhenNotUsed : 'An excellent piece of music. Though I\'m not sure why I decided to steal it',
       soundWhenUsed: 'paper_noise',
+      key: 'SHEET_MUSIC'
   },
   MOOSE_HEAD: { 
       name : 'Moose Head',
@@ -81,6 +85,7 @@ const items =
       messageWhenUsed : 'Ah, that\'s better',
       messageWhenNotUsed : 'I will not rest until this is back where it belongs',
       soundWhenUsed: 'heavy_object',
+      key: 'MOOSE_HEAD'
   },
   KEY_CODE: {
       name : 'Keycode',
@@ -88,6 +93,7 @@ const items =
       messageWhenUsed : 'You enter the keycode into the terminal',
       messageWhenNotUsed : 'What could these numbers mean?',
       soundWhenUsed: 'keyboard',
+      key: 'KEY_CODE'
   },
   EAGLE_CREST: {
       name : 'Eagle Crest',
@@ -95,6 +101,7 @@ const items =
       messageWhenUsed : 'You place the crest into the door',
       messageWhenNotUsed : 'What is this for? What does the eagle signify?',
       soundWhenUsed: 'insert_crest',
+      key: 'EAGLE_CREST'
   },
   CROWBAR :
   {   name : 'Crowbar',
@@ -102,6 +109,7 @@ const items =
       messageWhenUsed : 'You prise off the wooden planks',
       messageWhenNotUsed : 'Nothing to use this on in here.',
       soundWhenUsed: 'wood_crate_open',
+      key: 'CROWBAR'
   },
   STATUE_HEAD :
   {   name : 'Statue Head',
@@ -109,6 +117,7 @@ const items =
       messageWhenUsed : 'You place the head carefully back onto the statue',
       messageWhenNotUsed : 'What a strange thing to have found. I wonder who it\'s meant to be?',
       soundWhenUsed: 'heavy_object',
+      key: 'STATUE_HEAD'
   },
   HANDLE :  
   {   name : 'Handle',
@@ -116,6 +125,7 @@ const items =
       messageWhenUsed : 'You have attached the handle',
       messageWhenNotUsed : 'I\'m not sure where I could put this.',
       soundWhenUsed: 'door_unlock',
+      key: 'HANDLE'
   },
   SMALL_KEY: 
   {   name : 'Small Key',
@@ -123,6 +133,7 @@ const items =
       messageWhenUsed : 'You unlock the door',
       messageWhenNotUsed : 'It doesn\'t look like this can be used here',
       soundWhenUsed: 'metal_on_metal',
+      key: 'SMALL_KEY'
   },
   WOLF_CREST :
   {   name : 'Wolf Crest',
@@ -130,6 +141,7 @@ const items =
       messageWhenUsed : 'You place the crest into the door',
       messageWhenNotUsed : 'What could this be for?',
       soundWhenUsed: 'insert_crest',
+      key: 'WOLF_CREST'
   }
   };
 
